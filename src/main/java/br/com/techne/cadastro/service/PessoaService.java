@@ -40,4 +40,8 @@ public class PessoaService {
 	public List<Pessoa> listar() {
 		return pessoaDao.list();
 	}
+	
+	public Pessoa show(Long id){
+		return pessoaDao.get(id);
+	}
 }
