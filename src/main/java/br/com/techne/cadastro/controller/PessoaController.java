@@ -32,8 +32,7 @@ public class PessoaController {
 			return Response.serverError().build();
 		}
 	}
-
-	@PUT
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response inserirPessoa(Pessoa pessoa) {
 		try {
@@ -48,7 +47,7 @@ public class PessoaController {
 		}
 	}
 	@Path("{id}")
-	@POST
+	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response editarPessoa(Pessoa pessoa, @PathParam("id") Long id) {
 		try {
