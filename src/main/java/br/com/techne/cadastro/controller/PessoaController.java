@@ -19,12 +19,12 @@ import br.com.techne.cadastro.service.PessoaService;
 
 @Path("/cadastro/pessoa")
 @ApplicationScoped
+@Produces(MediaType.APPLICATION_JSON)
 public class PessoaController {
 	@Inject
 	private PessoaService pessoaService;
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response listarPessoa() {
 		try {
 			List<Pessoa> arrayList = pessoaService.listar();
@@ -36,7 +36,6 @@ public class PessoaController {
 		}
 	}
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response inserirPessoa(Pessoa pessoa) {
 		try {
 			Pessoa pessoaSalva = pessoaService.salvar(pessoa);
@@ -51,7 +50,7 @@ public class PessoaController {
 	}
 	@Path("{id}")
 	@PUT
-	@Produces(MediaType.APPLICATION_JSON)
+	
 	public Response editarPessoa(Pessoa pessoa, @PathParam("id") Long id) {
 		try {
 			Pessoa pessoaBD = pessoaService.show(id);
@@ -75,7 +74,6 @@ public class PessoaController {
 	}
 	@Path("{id}")
 	@DELETE
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response excluirPessoa(@PathParam("id") Long id) {
 		try {
 			Pessoa pessoa = pessoaService.show(id);
@@ -92,7 +90,6 @@ public class PessoaController {
 	}
 	@Path("{id}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response showPessoa(@PathParam("id") Long id) {
 		try {
 			Pessoa pessoa = pessoaService.show(id);
