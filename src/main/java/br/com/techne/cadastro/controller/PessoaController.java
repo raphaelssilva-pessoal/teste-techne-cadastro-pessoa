@@ -2,7 +2,8 @@ package br.com.techne.cadastro.controller;
 
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,8 +18,9 @@ import br.com.techne.cadastro.model.Pessoa;
 import br.com.techne.cadastro.service.PessoaService;
 
 @Path("/cadastro/pessoa")
+@ApplicationScoped
 public class PessoaController {
-	@EJB
+	@Inject
 	private PessoaService pessoaService;
 
 	@GET
@@ -27,8 +29,9 @@ public class PessoaController {
 		try {
 			List<Pessoa> arrayList = pessoaService.listar();
 
-			return Response.ok(arrayList).build();//
+			return Response.ok(arrayList).build();
 		} catch (Exception e) {
+			System.out.println(e);
 			return Response.serverError().build();
 		}
 	}

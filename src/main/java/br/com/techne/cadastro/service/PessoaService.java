@@ -2,17 +2,14 @@ package br.com.techne.cadastro.service;
 
 import java.util.List;
 
-import javax.ejb.EJB;
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import br.com.techne.cadastro.dao.PessoaDao;
 import br.com.techne.cadastro.model.Pessoa;
-
-@Stateless
-@LocalBean
+@ApplicationScoped
 public class PessoaService {
-	@EJB
+	@Inject
 	PessoaDao pessoaDao;
 
 	public Pessoa salvar(Pessoa pessoa) {

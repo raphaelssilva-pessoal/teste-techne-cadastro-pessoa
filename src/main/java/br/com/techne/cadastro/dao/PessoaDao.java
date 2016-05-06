@@ -2,18 +2,16 @@ package br.com.techne.cadastro.dao;
 
 import java.util.List;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import br.com.techne.cadastro.model.Pessoa;
 
-@Stateless
-@LocalBean
+@ApplicationScoped
 public class PessoaDao {
 
-	@PersistenceContext(unitName = "thePersistenceUnit")
+	@Inject
 	private EntityManager entityManager;
 
 	protected EntityManager getEntityManager() {
@@ -21,21 +19,30 @@ public class PessoaDao {
 	}
 
 	public void save(Pessoa pessoa) {
-		this.getEntityManager().persist(pessoa);
+		EntityManager em = getEntityManager();
+		em.getTransaction().begin();
+		em.persist(pessoa);
+		em.getTransaction().commit();
 	}
 
 	public void edit(Pessoa pessoa) {
-		this.getEntityManager().merge(pessoa);
+		EntityManager em = getEntityManager();
+		em.getTransaction().begin();
+		em.merge(pessoa);
+		em.getTransaction().commit();
 	}
 
 	public void delete(Pessoa pessoa) {
-		this.getEntityManager().remove(getEntityManager().contains(pessoa) ? pessoa : getEntityManager().merge(pessoa));
+		EntityManager em = getEntityManager();
+		em.getTransaction().begin();
+		em.remove(em.contains(pessoa) ? pessoa : em.merge(pessoa));
+		em.getTransaction().commit();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Pessoa> list() {
 		return (List<Pessoa>) this.getEntityManager().createQuery("select p from br.com.techne.cadastro.model.Pessoa p")
-				.getResultList();
+				.getResultList();		
 	}
 
 	public Pessoa get(Long id) {

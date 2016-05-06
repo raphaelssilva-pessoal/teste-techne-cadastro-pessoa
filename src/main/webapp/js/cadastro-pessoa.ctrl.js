@@ -68,13 +68,13 @@ app.controller("cadastroPessoaCtrl", function($scope, $http, $location, cadastro
             self.updatePessoa(self.pessoa, self.pessoa.id);
             console.log('Editando com id', self.pessoa.id);
         }
+        self.reset();
         $location.path('/')
     };
          
     self.edit = function(id){    	
     	self.showPessoa(id)    
-    	console.log(self.pessoa)    	
-    	self.showPessoa(id)   
+    	self.reset();
     	$location.path('/edit/'+id)
     };
          

@@ -5,7 +5,7 @@ app.factory('cadastroPessoaService', ['$http', '$q', function($http, $q){
     return {
          
             list: function() {
-                    return $http.get('http://localhost:8080/teste-techne-cadastro-pessoa/rest/cadastro/pessoa')
+                    return $http.get('http://localhost:8080/cadastro-pessoa/rest/cadastro/pessoa')
                             .then(
                                     function(response){
                                         return response.data;
@@ -16,7 +16,7 @@ app.factory('cadastroPessoaService', ['$http', '$q', function($http, $q){
                             );
             },
             show: function(id) {
-                return $http.get('http://localhost:8080/teste-techne-cadastro-pessoa/rest/cadastro/pessoa/'+id)
+                return $http.get('http://localhost:8080/cadastro-pessoa/rest/cadastro/pessoa/'+id)
                         .then(
                                 function(response){
                                     return response.data;
@@ -28,7 +28,7 @@ app.factory('cadastroPessoaService', ['$http', '$q', function($http, $q){
             },
              
             create: function(pessoa){
-                    return $http.post('http://localhost:8080/teste-techne-cadastro-pessoa/rest/cadastro/pessoa', pessoa)
+                    return $http.post('http://localhost:8080/cadastro-pessoa/rest/cadastro/pessoa', pessoa)
                             .then(
                                     function(response){
                                         return response.data;
@@ -40,7 +40,7 @@ app.factory('cadastroPessoaService', ['$http', '$q', function($http, $q){
             },
              
             update: function(pessoa, id){
-                    return $http.put('http://localhost:8080/teste-techne-cadastro-pessoa/rest/cadastro/pessoa/'+id, pessoa)
+                    return $http.put('http://localhost:8080/cadastro-pessoa/rest/cadastro/pessoa/'+id, pessoa)
                             .then(
                                     function(response){
                                         return response.data;
@@ -51,7 +51,7 @@ app.factory('cadastroPessoaService', ['$http', '$q', function($http, $q){
                             );
             },             
             'delete': function(id){
-                    return $http.delete('http://localhost:8080/teste-techne-cadastro-pessoa/rest/cadastro/pessoa/'+id)
+                    return $http.delete('http://localhost:8080/cadastro-pessoa/rest/cadastro/pessoa/'+id)
                             .then(
                                     function(response){
                                         return response.data;
